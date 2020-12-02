@@ -19,7 +19,7 @@ public class day2_solution {
         String password = processedLine[1];
         //ex: "1-3 a" --> ["1","3 a"]
         String[] passwordPolicy = processedLine[0].split("-");
-        //ex: ["1","3 a"] --> "1"
+        //ex: ["1","3 a"] --> "1" --> 1
         int minChars = Integer.parseInt(passwordPolicy[0]);
         //ex: ["1","3 a"] --> "3 a" --> ["3", "a"]
         String[] passwordReqChar = passwordPolicy[1].split(" ");
