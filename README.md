@@ -27,3 +27,6 @@
 23 |  |
 24 |  |
 25 |  |
+
+## Build and run all solutions
+`chmod +x solutions.sh && ./solutions.sh`
