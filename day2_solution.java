@@ -21,7 +21,7 @@ public class day2_solution {
         String[] passwordPolicy = processedLine[0].split("-");
         //ex: ["1","3 a"] --> "1"
         int minChars = Integer.parseInt(passwordPolicy[0]);
-        //ex: "3 a" --> ["3", "a"]
+        //ex: ["1","3 a"] --> "3 a" --> ["3", "a"]
         String[] passwordReqChar = passwordPolicy[1].split(" ");
         //ex: ["3", "a"] --> "3" --> 3
         int maxChars = Integer.parseInt(passwordReqChar[0]);
@@ -31,7 +31,7 @@ public class day2_solution {
         //Count number of reqChar occurrences
         int reqCharCount = 0;
         for(int i = 0; i < password.length(); i++) {
-        if(password.charAt(i) == reqChar) reqCharCount++;
+            if(password.charAt(i) == reqChar) reqCharCount++;
         }
         //Count number of compliant passwords
         if(reqCharCount >= minChars && reqCharCount <= maxChars) compliantPasswordCount++;
