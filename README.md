@@ -2,8 +2,8 @@
 🎄 | [Advent of Code 2020](https://adventofcode.com/) | ☃️
 :-: | :----------------------------------------------: | :-:
 **Day** | **Challenge** | **Language**
-1 | Stars Expense Report | Python
-2 |  | 
+1 | Report Repair | Python
+2 | Password Philosophy | Java
 3 |  |
 4 |  |
 5 |  |

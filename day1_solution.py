@@ -1,5 +1,5 @@
 #parse txt file into int array
-with open('day1-puzzle1-expense_report.txt','r') as f:
+with open('day1_given-expense_report.txt','r') as f:
     content = f.read()
 report = [int(i) for i in content.split()]
 
