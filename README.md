@@ -4,7 +4,7 @@
 **Day** | **Challenge** | **Language**
 1 | Report Repair | Python
 2 | Password Philosophy | Java
-3 |  |
+3 | Toboggan Trajectory | Go
 4 |  |
 5 |  |
 6 |  |
