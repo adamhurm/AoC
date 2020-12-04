@@ -18,11 +18,20 @@ else
 	javac day2_solution.java && java day2_solution
 fi
 
-
+#Day 3 - check for go
 if [ command -v go >/dev/null 2>&1 ]
 then
 	echo >&2 "Looks like you're missing Go. Day 3 solution will not be run."
 else
 	echo -e "\n\nDay 3 Solution\n---------------"
 	go run day3_solution.go
+fi
+
+#Day 2 - check for Elixir compiler and assume runtime is installed
+if [ command -v elixirc >/dev/null 2>&1 ]
+then
+	echo >&2 "Looks like you're missing an Elixir compiler. Day 4 solution will not be run."
+else
+	echo -e "\n\nDay 4 Solution (WIP)\n---------------"
+	elixirc day4_solution.ex
 fi
