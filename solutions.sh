@@ -23,6 +23,6 @@ if [ command -v go >/dev/null 2>&1 ]
 then
 	echo >&2 "Looks like you're missing Go. Day 3 solution will not be run."
 else
-	echo -e "\n\nDay 3 Solution (broken)\n---------------"
+	echo -e "\n\nDay 3 Solution\n---------------"
 	go run day3_solution.go
 fi
