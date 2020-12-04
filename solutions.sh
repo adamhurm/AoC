@@ -17,3 +17,12 @@ else
 	echo -e "\n\nDay 2 Solution\n---------------"
 	javac day2_solution.java && java day2_solution
 fi
+
+
+if [ command -v go >/dev/null 2>&1 ]
+then
+	echo >&2 "Looks like you're missing Go. Day 3 solution will not be run."
+else
+	echo -e "\n\nDay 3 Solution (broken)\n---------------"
+	go run day3_solution.go
+fi
