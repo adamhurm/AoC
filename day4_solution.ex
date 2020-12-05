@@ -1,8 +1,8 @@
 defmodule Day4Solution do
 	def check_passports do
-		{:ok, file} = File.read("day4_test.txt")#_given-passport_list.txt")
+		{:ok, file} = File.read("day4_given-passport_list.txt")#_given-passport_list.txt")
 		passports = String.split(file, "\n\n")
-		#check_passport_fields(passports, 0, Enum.count(passports)-1)
+		check_passport_fields(passports, 0, Enum.count(passports)-1)
 		validate_passport_fields(passports, 0, Enum.count(passports)-1)
 	end
 
@@ -25,115 +25,132 @@ defmodule Day4Solution do
 	def validate_passport_fields(passports, valid, n) when n < 1 do
 		passports_stripped = String.replace(Enum.at(passports, n), "\n", " ")
 		passport_full = String.split(passports_stripped, " ", trim: true)
-		#TODO: check that all fields are present as well. this will require modifying Puzzle 1 function
-		if validate_fields(passport_full, Enum.count(passport_full)-1, true) do
+		#Puzzle 2 DEBUG: IO.puts(["Passport string:",passport_full," || size:",Integer.to_string(Enum.count(passport_full))])
+		hasReqFields = String.contains?(passports_stripped, "byr") && String.contains?(passports_stripped, "iyr") && String.contains?(passports_stripped, "eyr") && String.contains?(passports_stripped, "hgt") && String.contains?(passports_stripped, "hcl") && String.contains?(passports_stripped, "ecl") && String.contains?(passports_stripped, "pid") 
+		#Puzzle 2 DEBUG: IO.puts(["has required fields? ", to_string(hasReqFields)])
+		#Puzzle 2 DEBUG: IO.puts(to_string(validate_fields(passport_full, hasReqFields, Enum.count(passport_full)-1)))
+		if validate_fields(passport_full, hasReqFields, Enum.count(passport_full)-1) do
+			#Puzzle 2 DEBUG: IO.puts("has valid fields? true")
 			IO.puts(["Puzzle 2: ",Integer.to_string(valid+1)," valid passports found."])
 		else
+			#Puzzle 2 DEBUG: IO.puts("has valid fields? false")
 			IO.puts(["Puzzle 2: ",Integer.to_string(valid)," valid passports found."])
 		end
 	end
 
 	def validate_passport_fields(passports, valid, n) do
-		passports_stripped = String.replace(Enum.at(passports, n), "\n", " ")
-		passport_full = String.split(passports_stripped, " ", trim: true)
-		#IO.puts(["passport:",passport_full," size:",Integer.to_string(Enum.count(passport_full))])
-		#TODO: check that all fields are present as well. this will require modifying Puzzle 1 function
-		if validate_fields(passport_full, Enum.count(passport_full)-1, true) do
+		passport_stripped = String.replace(Enum.at(passports, n), "\n", " ")
+		passport_full = String.split(passport_stripped, " ", trim: true)
+		#Puzzle 2 DEBUG: IO.puts(["Passport string:",passport_full," || size:",Integer.to_string(Enum.count(passport_full))])
+		hasReqFields = String.contains?(passport_stripped, "byr") && String.contains?(passport_stripped, "iyr") && String.contains?(passport_stripped, "eyr") && String.contains?(passport_stripped, "hgt") && String.contains?(passport_stripped, "hcl") && String.contains?(passport_stripped, "ecl") && String.contains?(passport_stripped, "pid") 
+		#Puzzle 2 DEBUG: IO.puts(["has required fields? ", to_string(hasReqFields)])
+		#Puzzle 2 DEBUG: IO.puts(to_string(validate_fields(passport_full, hasReqFields, Enum.count(passport_full)-1)))
+		if validate_fields(passport_full, hasReqFields, Enum.count(passport_full)-1) do 
+			#Puzzle 2 DEBUG: IO.puts("has valid fields? true")
 			validate_passport_fields(passports, valid+1, n-1)
 		else
+			#Puzzle 2 DEBUG: IO.puts("has valid fields? false")
 			validate_passport_fields(passports, valid, n-1)
 		end
 	end
 	
-	def validate_fields(fields, n, valid) when n < 1 do
+	def validate_fields(fields, valid, n) when n < 1 do
 		passport_fields = String.split(Enum.at(fields, n), ":", trim: true)
+		#Puzzle 2 DEBUG: IO.puts(["Passport field string: ",passport_fields])
 		fieldKey = Enum.at(passport_fields, 0)
 		fieldVal = Enum.at(passport_fields, 1)
-		valid && validate_field(fieldKey,fieldVal)
+		#IO.puts(validate_field(fieldKey,fieldVal))
+		validate_field(fieldKey,fieldVal) && valid
 	end
 
-	def validate_fields(fields, n, valid) do
+	def validate_fields(fields, valid, n) do
 		passport_fields = String.split(Enum.at(fields, n), ":", trim: true)
+		#Puzzle 2 DEBUG: IO.puts(["Passport field string: ",passport_fields])
 		fieldKey = Enum.at(passport_fields, 0)
 		fieldVal = Enum.at(passport_fields, 1)
-		validate_fields(fields, n-1, valid && validate_field(fieldKey,fieldVal))
+		#IO.puts(validate_field(fieldKey,fieldVal))
+		validate_fields(fields, validate_field(fieldKey,fieldVal) && valid, n-1) 
 	end
 
 	def validate_field(fieldKey, fieldVal) do
-		IO.puts(["key:",fieldKey,",val:",fieldVal])
+		#Puzzle 2 DEBUG: IO.puts(["key:",fieldKey,",val:",fieldVal])
 		case fieldKey do
 			"byr" ->
 				if (String.length(fieldVal) == 4) && (String.to_integer(fieldVal) >= 1920) && (String.to_integer(fieldVal) <= 2002) do
-					#IO.puts("byr valid")
+					#Puzzle 2 DEBUG: IO.puts("byr valid")
 					true
 				else
-					#IO.puts("byr invalid")
+					#Puzzle 2 DEBUG: IO.puts("byr invalid")
 					false
 				end
 			"iyr" ->
 				if (String.length(fieldVal) == 4) && (String.to_integer(fieldVal) >= 2010) && (String.to_integer(fieldVal) <= 2020) do
-					#IO.puts("iyr valid")
+					#Puzzle 2 DEBUG: IO.puts("iyr valid")
 					true
 				else
-					#IO.puts("iyr invalid")
+					#Puzzle 2 DEBUG: IO.puts("iyr invalid")
 					false
 				end
 			"eyr" ->
-				IO.puts(String.length(fieldVal))
 				if (String.length(fieldVal) == 4) && (String.to_integer(fieldVal) >= 2020) && (String.to_integer(fieldVal) <= 2030) do
-					#IO.puts("eyr valid")
+					#Puzzle 2 DEBUG: IO.puts("eyr valid")
 					true
 				else
-					#IO.puts("eyr invalid")
+					#Puzzle 2 DEBUG: IO.puts("eyr invalid")
 					false
 				end
 			"hgt" ->
 				if String.contains?(fieldVal, "cm") do
 					hgt = String.to_integer(Enum.at(String.split(fieldVal,"cm"),0))
+					#Puzzle 2 DEBUG: IO.puts(hgt)
 					if (hgt >= 150) && (hgt <= 193) do
-						IO.puts("hgt valid")
+						#Puzzle 2 DEBUG: IO.puts("hgt valid")
 						true
 					else
-						IO.puts("hgt invalid")
+						#Puzzle 2 DEBUG: IO.puts("hgt invalid")
 						false
 					end
-				end
-				if String.contains?(fieldVal, "in") do
-					hgt = String.to_integer(Enum.at(String.split(fieldVal,"in"),0))
-					if (hgt >= 59) && (hgt <= 76) do
-						IO.puts("hgt valid")
-						true
+				else 
+					if String.contains?(fieldVal, "in") do
+						hgt = String.to_integer(Enum.at(String.split(fieldVal,"in"),0))
+						if (hgt >= 59) && (hgt <= 76) do
+							#Puzzle 2 DEBUG: IO.puts("hgt valid")
+							true
+						else
+							#Puzzle 2 DEBUG: IO.puts("hgt invalid")
+							false
+						end
 					else
-						IO.puts("hgt invalid")
+						#Missing units for height, reject
 						false
 					end
 				end
 			"hcl" ->
-				if Regex.match?(~r{\A\#[\dabcdef]*\z}, fieldVal) do 
-					IO.puts("hcl valid")
+				if Regex.match?(~r{\A#[\dabcdef]*\z}, fieldVal) do 
+					#Puzzle 2 DEBUG: IO.puts("hcl valid")
 					true
 				else
-					IO.puts("hcl invalid")
+					#Puzzle 2 DEBUG: IO.puts("hcl invalid")
 					false
 				end
 			"ecl" ->
 				if "amb blu brn gry grn hzl oth" =~ fieldVal do
-					IO.puts("ecl valid")
+					#Puzzle 2 DEBUG: IO.puts("ecl valid")
 					true
 				else
-					IO.puts("ecl invalid")
+					#Puzzle 2 DEBUG: IO.puts("ecl invalid")
 					false
 				end
 			"pid" ->
 				if (String.length(fieldVal) == 9) && Regex.match?(~r{\A\d*\z}, fieldVal) do
-					IO.puts("pid valid")
+					#Puzzle 2 DEBUG: IO.puts("pid valid")
 					true
 				else
-					IO.puts("pid invalid")
+					#Puzzle 2 DEBUG: IO.puts("pid invalid")
 					false
 				end		
 			"cid" -> true
-			_ -> IO.puts("reached unexpected case")
+			_ -> IO.puts("Error: encountered unrecognized passport field.")
 		end
 	end
 end

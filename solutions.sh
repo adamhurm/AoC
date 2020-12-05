@@ -27,11 +27,11 @@ else
 	go run day3_solution.go
 fi
 
-#Day 2 - check for Elixir compiler and assume runtime is installed
+#Day 4 - check for Elixir compiler and assume runtime is installed
 if [ command -v elixirc >/dev/null 2>&1 ]
 then
 	echo >&2 "Looks like you're missing an Elixir compiler. Day 4 solution will not be run."
 else
-	echo -e "\n\nDay 4 Solution (WIP)\n---------------"
+	echo -e "\n\nDay 4 Solution\n---------------"
 	elixirc day4_solution.ex
 fi
