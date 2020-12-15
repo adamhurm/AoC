@@ -36,11 +36,20 @@ else
 	elixirc day4_solution.ex
 fi
 
-#Day 5 - check for Racket1 
+#Day 5 - check for Racket 
 if [ command -v racket >/dev/null 2>&1 ]
 then
 	echo >&2 "Looks like you're missing Racket. Day 5 solution will not be run."
 else
-echo -e "\n\nDay 4 Solution\n---------------"
+echo -e "\n\nDay 5 Solution\n---------------"
 	racket day5_solution.rkt
+fi
+
+#Day 6 - check for TypeScript compiler and assume node is installed 
+if [ command -v racket >/dev/null 2>&1 ]
+then
+	echo >&2 "Looks like you're missing a TypeScript compiler. Day 6 solution will not be run."
+else
+echo -e "\n\nDay 6 Solution\n---------------"
+	tsc day6_solution.ts && node day6_solution.js
 fi

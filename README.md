@@ -7,7 +7,7 @@
 3 | Toboggan Trajectory | Go
 4 | Passport Processing | Elixir
 5 | Binary Boarding | Racket
-6 |  |
+6 | Custom Customs | TypeScript
 7 |  |
 8 |  |
 9 |  |
