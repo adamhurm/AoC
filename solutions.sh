@@ -35,3 +35,12 @@ else
 	echo -e "\n\nDay 4 Solution\n---------------"
 	elixirc day4_solution.ex
 fi
+
+#Day 5 - check for Racket1 
+if [ command -v racket >/dev/null 2>&1 ]
+then
+	echo >&2 "Looks like you're missing Racket. Day 5 solution will not be run."
+else
+echo -e "\n\nDay 4 Solution\n---------------"
+	racket day5_solution.rkt
+fi
