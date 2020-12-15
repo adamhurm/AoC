@@ -42,9 +42,21 @@
   (printCoords (calcCoords (string->list line) defaultCoords))))
 ;(testCoords)
 
-(define (puzzle1 list maxId)
-  (if (empty?  list)
-      (display (string-append "Puzzle 1: " (number->string maxId) " is the highest boarding pass ID found."))
-      (puzzle1 (rest list) (max (checkSeatId (calcCoords (string->list (first list)) defaultCoords)) maxId))))
+(define (puzzle1 boardingPasses maxId)
+  (if (empty? boardingPasses)
+      (display (string-append "Puzzle 1: " (number->string maxId) " is the highest boarding pass ID found.\n"))
+      (puzzle1 (rest boardingPasses) (max (checkSeatId (calcCoords (string->list (first boardingPasses)) defaultCoords)) maxId))))
 
+(define (checkForMissing ids currId)
+  (if (> (- (first ids) currId) 1)
+      (+ currId 1)
+      (checkForMissing (rest ids) (first ids))))
+
+; puzzle 2 answer is 603 -- racket day5_solution.rkt | rev | cut -c-4 | rev | cut -c-3 | sort | grep 03
+(define (puzzle2 boardingPasses ids)
+  (if (empty? boardingPasses)
+      (display (string-append "Puzzle 2: " (number->string (checkForMissing (cdr (sort ids <)) (car (sort ids <)))) " is the missing boarding pass ID. This must belong to me!\n"))
+      (puzzle2 (rest boardingPasses) (cons (checkSeatId (calcCoords (string->list (first boardingPasses)) defaultCoords)) ids))))
+ 
 (puzzle1 (file->lines "day5_given-boarding_passes.txt") 0)
+(puzzle2 (file->lines "day5_given-boarding_passes.txt") '())
