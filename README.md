@@ -8,7 +8,7 @@
 4 | Passport Processing | Elixir
 5 | Binary Boarding | Racket
 6 | Custom Customs | TypeScript
-7 |  |
+7 | Handy Haversacks | C
 8 |  |
 9 |  |
 10 |  |
