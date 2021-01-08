@@ -46,7 +46,7 @@ echo -e "\n\nDay 5 Solution\n---------------"
 fi
 
 #Day 6 - check for TypeScript compiler and assume node is installed 
-if [ command -v racket >/dev/null 2>&1 ]
+if [ command -v tsc >/dev/null 2>&1 ]
 then
 	echo >&2 "Looks like you're missing a TypeScript compiler. Day 6 solution will not be run."
 else

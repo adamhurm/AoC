@@ -9,24 +9,24 @@
 5 | Binary Boarding | Racket
 6 | Custom Customs | TypeScript
 7 | Handy Haversacks | C
-8 |  |
-9 |  |
-10 |  |
-11 |  |
-12 |  |
-13 |  |
-14 |  |
-15 |  |
-16 |  |
-17 |  |
-18 |  |
-19 |  |
-20 |  |
-21 |  |
-22 |  |
-23 |  |
-24 |  |
-25 |  |
+8 | ... | ...
+9 | ... | ...
+10 | so... | English
+11 | ... | ...
+12 | you | English
+13 | may | English 
+14 | have | English
+15 | noticed | English
+16 | ... | ...
+17 | I | English
+18 | stopped | English
+19 | doing | English
+20 | challenges | English
+21 | ... | ...
+22 | December | English
+23 | was | English
+24 | crazy | English
+25 | 🙃 | Emoji
 
 ## Build and run all solutions
 `chmod +x solutions.sh && ./solutions.sh`
